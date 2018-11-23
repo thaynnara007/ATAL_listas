@@ -13,6 +13,8 @@ def findSequencia():
         
         sinal = sinalAtual
     
+    return dp[0]
+    
 
 sequencia = map(int, raw_input("Sequencia de inteiros:").split())
 sizeSequencia = len(sequencia)
