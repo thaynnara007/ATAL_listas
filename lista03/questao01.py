@@ -1,31 +1,51 @@
+def findSinal(num):
+
+    return "+" if num >= 0 else "-"
+
 def findSequencia():
 
-    global sequencia
     global sizeSequencia
+    global sequencia
+    global sinais
     global dp
-    global sinal
 
-    for i in xrange(sizeSequencia - 3, -1, -1):
-        sinalAtual = "+" if sequencia[i] > sequencia[i + 1] else "-"
-    
-        if sinal != sinalAtual: dp[i] = dp[i + 1] + 1
-        else: dp[i] = dp[i + 1]
-        
-        sinal = sinalAtual
-    
-    return dp[0]
-    
+    for i in xrange(1, sizeSequencia):
+        for j in xrange(i):
+            
+            if j == 0:
+                dp[i - 1] = 1;
+                sinais[i - 1] = findSinal(sequencia[j] - sequencia[i])
+
+            elif(findSinal(sequencia[j] - sequencia[i]) != sinais[i - 1]):
+
+                valor1 = dp[i - 1] + 1 #subestrutura otima1
+                valor2 = dp[j - 1]  #subestrutura otima2
+                
+                if(valor2 < valor1):
+                    dp[i - 1] = valor1
+                    sinais[i - 1] = findSinal(sequencia[j] - sequencia[i])
+            
+            elif(findSinal(sequencia[j] - sequencia[i]) == sinais[i - 1]):
+
+                valor1 = dp[i - 1] #subestrutura otima1
+                valor2 = dp[j - 1]  #subestrutura otima2
+
+                if(valor2 > valor1):
+                    dp[i - 1] = valor2
+                    sinais[i - 1] = sinais[j - 1]
+ 
 
 sequencia = map(int, raw_input("Sequencia de inteiros:").split())
 sizeSequencia = len(sequencia)
 
-if len == 1: print 0
+if sizeSequencia == 1: print 0
 else: 
 
-    dp = [0 for i in xrange(sizeSequencia)]
-    dp[sizeSequencia -2] = 1;
+    dp = [0 for i in xrange(sizeSequencia - 1)]
+    sinais = ["." for i in xrange(sizeSequencia - 1)]
 
-    sinal = "+" if sequencia[-2] > sequencia[-1] else "-"
     findSequencia()
+    print dp 
+    print dp[-1]
+    
 
-print dp[0] 
