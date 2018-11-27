@@ -23,7 +23,8 @@ def findOperacoes():
 
             if  sequencia2[i- 1] == sequencia1[j - 1]: dp[i][j] = dp[i - 1][j - 1] #subestrutura otima
             else: dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i -1][j - 1] + 1) #subestrutura otima
-
+    
+    return d[-1][-1]
 
 sequencia1 = raw_input("sequencia1:")
 sequencia2 = raw_input("sequencia2:")

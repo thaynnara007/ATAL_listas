@@ -7,6 +7,8 @@ def numBinomial(n, k):
         for j in xrange(k , 0, -1):
 
             dp[j] = dp[j] + dp[j - 1] #subestrutura otima
+    
+    return d[-1]
 
 
 n = int(raw_input("n:"))

@@ -33,7 +33,8 @@ def findSequencia():
                 if(valor2 > valor1):
                     dp[i - 1] = valor2
                     sinais[i - 1] = sinais[j - 1]
- 
+    
+    return dp[-1]
 
 sequencia = map(int, raw_input("Sequencia de inteiros:").split())
 sizeSequencia = len(sequencia)
