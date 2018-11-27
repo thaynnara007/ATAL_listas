@@ -13,25 +13,25 @@ def findSequencia():
         for j in xrange(i):
             
             if j == 0:
-                dp[i - 1] = 1;
+                dp[i - 1] = 1; #caso base
                 sinais[i - 1] = findSinal(sequencia[j] - sequencia[i])
 
             elif(findSinal(sequencia[j] - sequencia[i]) != sinais[i - 1]):
 
-                valor1 = dp[i - 1] + 1 #subestrutura otima1
-                valor2 = dp[j - 1]  #subestrutura otima2
+                valor1 = dp[i - 1] + 1 
+                valor2 = dp[j - 1]  
                 
                 if(valor2 < valor1):
-                    dp[i - 1] = valor1
+                    dp[i - 1] = valor1 #subestrutura otima
                     sinais[i - 1] = findSinal(sequencia[j] - sequencia[i])
             
             elif(findSinal(sequencia[j] - sequencia[i]) == sinais[i - 1]):
 
-                valor1 = dp[i - 1] #subestrutura otima1
-                valor2 = dp[j - 1]  #subestrutura otima2
+                valor1 = dp[i - 1] 
+                valor2 = dp[j - 1]  
 
                 if(valor2 > valor1):
-                    dp[i - 1] = valor2
+                    dp[i - 1] = valor2 #subestrutura otima
                     sinais[i - 1] = sinais[j - 1]
     
     return dp[-1]
