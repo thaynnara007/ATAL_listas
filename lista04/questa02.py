@@ -10,8 +10,7 @@ def myDFS(no):
 
     cor[no] = CINZA
     temCiclo = False
-    print cor
-    print no
+ 
     for adjacente in listaAdjacencia[no]:
 
         if cor[adjacente] == BRANCO: temCiclo = temCiclo or myDFS(adjacente)
@@ -20,7 +19,7 @@ def myDFS(no):
     cor[no] = PRETO    
     return temCiclo
 
-#lendo o grafo
+#lendo o grafo nao direcionado
 qntdNos, qntdArestas = map(int, raw_input("quantidade de vertices, quantidade de arestas:").split())
 cor = {}
 listaAdjacencia = {}
@@ -39,7 +38,6 @@ for aresta in xrange(qntdArestas):
         cor[no2] = BRANCO
     
     else: listaAdjacencia[no2].append(no1)
-print listaAdjacencia
 
 root = raw_input("escolha o vertice inicial:")
 print myDFS(root)
